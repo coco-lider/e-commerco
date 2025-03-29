@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Северяночка - Корзина</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="image/logo.png" alt="Северяночка">
+            </div>
+            <button class="catalog-btn">Каталог</button>
+            <div class="search-bar">
+                <input type="text" placeholder="Найти товар">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <div class="header-icons">
+                <a href="#" class="icon-link">
+                    <i class="far fa-heart"></i>
+                    <span>Избранное</span>
+                </a>
+                <a href="#" class="icon-link">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Заказы</span>
+                </a>
+                <a href="cart.html" class="icon-link cart-icon active">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Корзина</span>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            <div class="user-profile">
+                <img src="image/avatar.png" alt="Аватар" class="avatar">
+                <span>Алексей</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </header>
+
+    <nav class="breadcrumb">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li>Корзина</li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="cart-section">
+            <h1 class="cart-title">Корзина <span class="cart-badge">0</span></h1>
+            
+            <div class="cart-actions">
+                <label class="select-all">
+                    <input type="checkbox" id="selectAll">
+                    <span>Выделить всё</span>
+                </label>
+                <button class="delete-selected">Удалить выбранные</button>
+            </div>
+            
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be added here dynamically -->
+            </div>
+            
+            <div class="cart-summary">
+                <div class="summary-left">
+                    <div class="bonus-toggle">
+                        <span>Списать 200 ₽</span>
+                        <label class="switch">
+                            <input type="checkbox" id="useBonus">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="bonus-info">
+                        На карте накоплено 200 ₽
+                    </div>
+                </div>
+                <div class="summary-right">
+                    <div class="summary-row">
+                        <span class="summary-label" id="itemsCount">3 товара</span>
+                        <span class="summary-value" id="subtotal">258,10 ₽</span>
+                    </div>
+                    <div class="summary-row discount">
+                        <span class="summary-label">Скидка</span>
+                        <span class="summary-value" id="discount">-8,01 ₽</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span class="summary-label">Итого</span>
+                        <span class="summary-value" id="total">250,09 ₽</span>
+                    </div>
+                    <div class="bonus-earn">
+                        <span>Вы получите 100 бонусов</span>
+                    </div>
+                    <button class="checkout-btn">Оформить заказ</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <img src="image/logo.png" alt="Логотип">
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>О компании</h4>
+                        <ul>
+                            <li><a href="#">Контакты</a></li>
+                            <li><a href="#">Вакансии</a></li>
+                            <li><a href="#">Статьи</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Политика обработки персональных данных</h4>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-vk"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-odnoklassniki"></i></a>
+                </div>
+                <div class="footer-contact">
+                    <div class="phone">
+                        <i class="fas fa-phone"></i>
+                        <span>8 800 777 33 33</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Дизайн <a href="#">ZASOVSKY</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./cart.js"></script>
+</body>
+</html>
