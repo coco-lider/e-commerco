@@ -1,18 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Thumbnail image click handler
     const thumbnails = document.querySelectorAll('.thumbnail');
     const mainImage = document.querySelector('.main-image img');
     
     thumbnails.forEach(thumbnail => {
         thumbnail.addEventListener('click', function() {
-            // Remove active class from all thumbnails
             thumbnails.forEach(t => t.classList.remove('active'));
-            
-            // Add active class to clicked thumbnail
+
             this.classList.add('active');
-            
-            // Update main image (in a real app, you would change the src)
-            // For this demo, we're just simulating the change
+
             console.log('Thumbnail clicked, would change main image');
         });
     });
@@ -27,10 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const smallCartBtns = document.querySelectorAll('.add-to-cart-small');
     smallCartBtns.forEach(btn => {
         btn.addEventListener('click', function(e) {
-            // Prevent the click from bubbling up to the product card
             e.stopPropagation();
-            
-            // Get the product title from the parent card
+
             const productCard = this.closest('.product-card');
             const productTitle = productCard.querySelector('.product-title').textContent.trim();
             
@@ -42,10 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const favoriteButtons = document.querySelectorAll('.add-favorite, .favorite-btn');
     favoriteButtons.forEach(btn => {
         btn.addEventListener('click', function(e) {
-            // Prevent the click from bubbling up to the product card
             e.stopPropagation();
-            
-            // Toggle heart icon
+
             const icon = this.querySelector('i');
             if (icon.classList.contains('far')) {
                 icon.classList.remove('far');
@@ -62,79 +53,64 @@ document.addEventListener('DOMContentLoaded', function() {
     // Share button handler
     const shareBtn = document.querySelector('.share-btn');
     shareBtn.addEventListener('click', function(e) {
-        // Prevent the click from bubbling up
         e.stopPropagation();
-        
-        // In a real app, this would open a share dialog
+
         alert('Поделиться товаром');
     });
     
     // Simulate discount countdown for promotional items
     const discountBadges = document.querySelectorAll('.discount-badge');
     if (discountBadges.length > 0) {
-        // Set a random end time for the promotion
         const endTime = new Date();
         endTime.setHours(endTime.getHours() + Math.floor(Math.random() * 24));
-        
-        // Update countdown every minute
+
         setInterval(function() {
             const now = new Date();
             const diff = endTime - now;
             
             if (diff <= 0) {
-                // Promotion ended
                 discountBadges.forEach(badge => {
                     badge.textContent = "Акция завершена";
                 });
             } else {
-                // Calculate hours and minutes left
                 const hours = Math.floor(diff / (1000 * 60 * 60));
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                
-                // Only update the first badge to simulate different promotions
+
                 if (discountBadges[0]) {
                     discountBadges[0].setAttribute('title', `Осталось: ${hours}ч ${minutes}м`);
                 }
             }
-        }, 60000); // Update every minute
+        }, 60000);
     }
     
-    // Product card click handler - SWAP FUNCTIONALITY
     const productCards = document.querySelectorAll('.product-card');
     
     productCards.forEach(card => {
         card.addEventListener('click', function(e) {
-            // Don't trigger when clicking buttons inside the card
             if (e.target.closest('button')) {
                 return;
             }
-            
-            // 1. Get details of the clicked product card
+
             const clickedCard = this;
             const clickedTitle = clickedCard.querySelector('.product-title').textContent.trim();
             const clickedPrice = clickedCard.querySelector('.price').textContent.trim();
             const clickedImage = clickedCard.querySelector('.product-image img').getAttribute('src');
             const clickedRating = clickedCard.querySelector('.stars').innerHTML;
-            
-            // Get old price if it exists
+
             let clickedOldPrice = clickedCard.querySelector('.old-price');
             clickedOldPrice = clickedOldPrice ? clickedOldPrice.textContent.trim() : '';
-            
-            // Get discount badge if it exists
+
             let clickedDiscount = clickedCard.querySelector('.discount-badge');
             clickedDiscount = clickedDiscount ? clickedDiscount.outerHTML : '';
-            
-            // 2. Get details of the main product
+
             const mainTitle = document.querySelector('.product-info h1').textContent.trim();
             const mainPrice = document.querySelector('.product-info .current-price').textContent.trim();
             const mainImage = document.querySelector('.main-image img').getAttribute('src');
             const mainRating = document.querySelector('.product-info .stars').innerHTML;
-            
-            // Get old price if it exists
+
             let mainOldPrice = document.querySelector('.product-info .old-price');
             mainOldPrice = mainOldPrice && mainOldPrice.style.display !== 'none' ? mainOldPrice.textContent.trim() : '';
-            
-            // 3. Create product details based on the product types
+
             let clickedDetails = '';
             if (clickedTitle.toLowerCase().includes('масло')) {
                 clickedDetails = `
@@ -261,10 +237,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
-    
-    // Function to reattach event listeners after DOM changes
+
     function attachEventListeners() {
-        // Thumbnail click handlers
         const newThumbnails = document.querySelectorAll('.thumbnail');
         newThumbnails.forEach(thumbnail => {
             thumbnail.addEventListener('click', function() {
